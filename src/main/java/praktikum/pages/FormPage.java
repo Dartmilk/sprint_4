@@ -20,7 +20,7 @@ public class FormPage {
     private final By fieldMetroStation = By.xpath(".//div[4]/div/div[1]/input");
     //    Поле "Телефон"
     private final By fieldPhone = By.xpath(".//div[5]/input");
-//    Кнопка "Далее"
+    //    Кнопка "Далее"
     private final By nextButton = By.xpath(".//button[text()='Далее']");
 
     public FormPage(WebDriver driver) {
@@ -32,20 +32,23 @@ public class FormPage {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldName));
         driver.findElement(fieldName).sendKeys(name);
-return this;
+        return this;
     }
+
     public FormPage enterLastName(String lastName) {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldLastName));
         driver.findElement(fieldLastName).sendKeys(lastName);
         return this;
     }
+
     public FormPage enterAddress(String address) {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldAddress));
         driver.findElement(fieldAddress).sendKeys(address);
         return this;
     }
+
     public FormPage enterMetroStation(String metroStation) {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldMetroStation));
@@ -53,14 +56,16 @@ return this;
         driver.findElement(By.xpath(".//div[text()='" + metroStation + "']")).click();
         return this;
     }
+
     public FormPage enterPhone(String phone) {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.visibilityOfElementLocated(fieldPhone));
         driver.findElement(fieldPhone).sendKeys(phone);
         return this;
     }
-public ForRentPage clickOnNextButton(){
+
+    public ForRentPage clickOnNextButton() {
         driver.findElement(nextButton).click();
         return new ForRentPage(driver);
-}
+    }
 }

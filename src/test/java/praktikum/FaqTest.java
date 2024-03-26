@@ -51,15 +51,10 @@ public class FaqTest {
     @Test
     public void assertStrings() {
         WebDriver driver = driverRule.getDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainPage main = new MainPage(driver);
-        main.open();
-
-        driver.findElement(By.id("rcc-confirm-button")).click();
-        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
-                .until(ExpectedConditions.elementToBeClickable(By.id("accordion__heading-" + id)));
-
-        driver.findElement(By.id("accordion__heading-" + id)).click();
+        main.open()
+                .clickCookieButton()
+                .clickButtonAnswer(id);
         String actualText = driver.findElement(By.cssSelector("[id='accordion__panel-" + id + "'] p")).getText();
         assertEquals("Ожидаемый текст не совпадает с фактическим", actualText, expectedText);
 

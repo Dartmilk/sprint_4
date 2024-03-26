@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class DriverRule extends ExternalResource {
     private WebDriver driver;
 
@@ -16,7 +18,6 @@ public class DriverRule extends ExternalResource {
     }
 
 
-
     @Override
     protected void after() {
         driver.quit();
@@ -24,7 +25,7 @@ public class DriverRule extends ExternalResource {
 
 
     private void initDriver() {
-        if ("firefox".equals(System.getProperty("browser"))){
+        if ("firefox".equals(System.getProperty("browser"))) {
             initFirefox();
         } else {
             initChrome();
@@ -32,15 +33,15 @@ public class DriverRule extends ExternalResource {
     }
 
 
-
-
-    private void initFirefox(){
+    private void initFirefox() {
         WebDriverManager.firefoxdriver().setup();
         var opts = new FirefoxOptions()
                 .configureFromEnv();
         driver = new FirefoxDriver(opts);
+
     }
-    private void initChrome(){
+
+    private void initChrome() {
         WebDriverManager.chromedriver();
         driver = new ChromeDriver();
     }

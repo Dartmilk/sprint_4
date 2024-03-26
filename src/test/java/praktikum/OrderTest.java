@@ -29,8 +29,8 @@ public class OrderTest {
     private final String comment;
 
 
-    public OrderTest(String name, String lastName, String address, String metro, String phone,String date,
-                     String period, String color,String comment) {
+    public OrderTest(String name, String lastName, String address, String metro, String phone, String date,
+                     String period, String color, String comment) {
 
         this.name = name;
         this.lastName = lastName;
@@ -47,19 +47,20 @@ public class OrderTest {
     @Rule
     public DriverRule driverRule = new DriverRule();
 
+
     @Parameterized.Parameters
     public static Object[][] data() {
         return new Object[][]{
-                {"Дмитрий", "Лазарев", "Мавзолей", "Черкизовская", "89566478338","28", "сутки",
+                {"Дмитрий", "Лазарев", "Мавзолей", "Черкизовская", "89566478338", "28", "сутки",
                         "черный жемчуг", "Прекрасный сервис"},
-                {"Василий", "Пупкин", "Садовод", "Сокольники", "89556434212","29", "двое суток",
+                {"Василий", "Пупкин", "Садовод", "Сокольники", "89556434212", "29", "двое суток",
                         "серая безысходность", "Сервис прекрасный"},
         };
     }
+
     @Test
-    public void headerButtonTest(){
+    public void headerButtonTest() {
         WebDriver driver = driverRule.getDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainPage main = new MainPage(driver);
         main.open();
         FormPage order = main.clickHeaderButton();
@@ -76,12 +77,11 @@ public class OrderTest {
                 .clickOrderButton();
 
 
-
     }
+
     @Test
-    public void footerButtonTest(){
+    public void footerButtonTest() {
         WebDriver driver = driverRule.getDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         MainPage main = new MainPage(driver);
         main.open();
         FormPage order = main.clickFooterButton();
@@ -96,7 +96,6 @@ public class OrderTest {
                 .enterScooterColor(color)
                 .enterComment(comment)
                 .clickOrderButton();
-
 
 
     }

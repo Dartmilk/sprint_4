@@ -8,6 +8,8 @@ import praktikum.EnvConfig;
 
 import java.time.Duration;
 
+import static org.junit.Assert.assertEquals;
+
 public class MainPage {
     private final WebDriver driver;
     //    Кнопка "Заказать" в хэдере
@@ -26,21 +28,34 @@ public class MainPage {
         driver.get(EnvConfig.BASE_URL);
         return this;
     }
-    public FormPage clickHeaderButton(){
+
+    public FormPage clickHeaderButton() {
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.elementToBeClickable(smallOrderButton));
         driver.findElement(smallOrderButton).click();
         return new FormPage(driver);
 
     }
-        public FormPage clickFooterButton(){
+
+    public FormPage clickFooterButton() {
         driver.findElement(acceptCookie).click();
         new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
                 .until(ExpectedConditions.elementToBeClickable(bigOrderButton));
-
         driver.findElement(bigOrderButton).click();
         return new FormPage(driver);
 
+    }
+
+    public MainPage clickCookieButton() {
+        driver.findElement(By.id("rcc-confirm-button")).click();
+        return this;
+    }
+
+    public MainPage clickButtonAnswer(int id) {
+        new WebDriverWait(driver, Duration.ofSeconds(EnvConfig.DEFAULT_TIMEOUT))
+                .until(ExpectedConditions.elementToBeClickable(By.id("accordion__heading-" + id)));
+        driver.findElement(By.id("accordion__heading-" + id)).click();
+        return this;
     }
 
 }
